@@ -15,7 +15,7 @@
 
 - name: Docker| Install Engine
   yum: 
-    name: 'docker-engine-{{docker_engine_version|default('*')}}'
+    name: 'docker-engine-{{docker_engine_version|default("*")}}'
     update_cache: yes
     state: present
 

@@ -16,3 +16,7 @@
   include: '{{ ansible_os_family }}-Docker.yml'
   tags: [ 'Docker' ]
 
+- name  : Pycharm| Chargement des taches
+  include: '{{ ansible_os_family }}-Pycharm.yml'
+  tags: [ 'Pycharm' ]
+

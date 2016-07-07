@@ -1,0 +1,51 @@
+---
+- name: PyCharm| verification de la version de Pycharm
+  assert:
+    that: pycharm_version in ['2016.1.4', '2016.1', '5.0.1', '4.5.4']
+
+- name: PyCharm| Telechargement de Pycharm
+  get_url:
+    url: 'http://download.jetbrains.com/python/pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.tar.gz'
+    dest: /tmp/pycharm.tar.gz
+
+#- name: PyCharm| Decompression de Pycharm
+#  unarchive:
+#    src: /tmp/pycharm.tar.gz
+#    dest: /opt/
+#    copy: no
+#  when: pycharm_exist.stat.exists == False
+
+- name: PyCharm| Renommage du repertoire Pycharm
+  command: 'mv pycharm-{{ pycharm_edition }}-{{ pycharm_version }} /opt/pycharm'
+  args:
+    chdir: '/opt'
+
+- name: PyCharm| Creation du lien symbolique
+  file:
+    src: /opt/pycharm/bin/pycharm.sh
+    dest: /usr/bin/pycharm
+    state: link
+  become: yes
+
+- name: JetBrains PyCharm| Create desktop entry
+  template:
+    src: Pycharm_entry.j2
+    dest: /usr/share/applications/PyCharm.desktop
+    mode: 755
+  with_items:
+    - {
+    name: 'PyCharm',
+    exec: '/opt/pycharm/bin/pycharm.sh',
+    icon: '/opt/pycharm/bin/pycharm.png',
+    comment: 'Develop with PyCharm!',
+    categories: 'Development;IDE;',
+    startupwmclass: 'jetbrains-pycharm'
+    }
+
+
+#- name: PyCharm| Installation de Pycharm
+#  unarchive:
+#    src: 'http://download.jetbrains.com/python/pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.tar.gz'
+#    creates: '/opt/pycharm-{{ pycharm_version }}'
+#    copy: false
+

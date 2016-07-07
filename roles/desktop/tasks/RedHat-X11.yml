@@ -94,14 +94,3 @@
     - vlc
     - yumex
 
-- name: X11| Creation du repertoire de Pycharm
-  file: 
-    path: '/opt/pycharm-{{ pycharm_version }}'
-    state: directory
-
-- name: X11| Installation de Pycharm
-  unarchive:
-    src: 'http://download.jetbrains.com/python/pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.tar.gz'
-    dest: /opt
-    #creates: '/opt/pycharm-{{ pycharm_version }}'
-    copy: false
