@@ -1,0 +1,18 @@
+---
+- include_vars: '{{ ansible_os_family }}.yml'
+
+- name: X11| Installation des Bureaux
+  include: '{{ ansible_os_family }}-X11.yml'
+
+- name  : VBox| Chargement des taches
+  include: '{{ ansible_os_family }}-VBox.yml'
+  tags: [ 'VBox' ]
+
+- name  : Vagrant| Chargement des taches
+  include: '{{ ansible_os_family }}-Vagrant.yml'
+  tags: [ 'Vagrant' ]
+
+- name  : Docker| Chargement des taches
+  include: '{{ ansible_os_family }}-Docker.yml'
+  tags: [ 'Docker' ]
+

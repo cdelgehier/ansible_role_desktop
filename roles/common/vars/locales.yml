@@ -1,0 +1,7 @@
+---
+locale_gen: "fr_FR.UTF-8"
+console_keymap: fr-latin9
+locale_conf:
+  LANG: "fr_FR.UTF-8"
+  LC_ALL: "fr_FR.UTF-8"
+

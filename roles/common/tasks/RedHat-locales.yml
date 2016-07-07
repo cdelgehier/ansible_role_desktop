@@ -1,0 +1,14 @@
+---
+- name: LOCALES| /etc/locale.gen
+  command: localedef -i fr_FR -f UTF-8 fr_FR.UTF8 
+
+- name: LOCALES| Configuration du clavier
+  command: localectl set-keymap '{{ console_keymap }}'
+  when: console_keymap is defined
+
+- name: LOCALES| Configuration des locales
+  template:
+    src: 'locale.conf.j2'
+    dest: '/etc/locale.conf'
+    mode: 0644
+  when: locale_conf is defined

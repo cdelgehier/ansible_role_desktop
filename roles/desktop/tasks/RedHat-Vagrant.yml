@@ -1,0 +1,14 @@
+---
+- name: Vagrant| Download 
+  get_url: 
+    url: '{{ vagrant_url }}'
+    dest: '{{ vagrant_tmp_file }}'
+    force: no 
+    validate_certs: no
+  when: download_vagrant|bool
+
+- name: Vagrant| Installation 
+  yum:
+    name: '{{ vagrant_tmp_file }}'
+    state: present
+  changed_when: false

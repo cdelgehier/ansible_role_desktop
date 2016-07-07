@@ -1,0 +1,82 @@
+---
+- name: RedHat| Generation du yum.conf
+  become: yes
+  template:
+    src: yum.conf.j2
+    dest: /etc/yum.conf
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: RedHat| desactivation du fastest mirror
+  lineinfile: 
+    dest: /etc/yum/pluginconf.d/fastestmirror.conf
+    regexp: '^enabled'
+    line: 'enabled=0'
+
+- name: RedHat| Desactivation de SELinux
+  selinux: state=disabled
+
+- name: RedHat| Stop de firewalld
+  service: name=firewalld enabled=no state=stopped
+
+- name: RedHat| Mise a jour du systeme
+  yum: name=* state=latest
+
+- name: RedHat| Installation du repo Epel
+  yum:
+    name: epel-release
+    enablerepo: extras
+    state: present
+
+- name: RedHat| Installation des utilitaire de base
+  yum: 
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - sysstat
+    - nc
+    - vim
+    - curl
+    - wget
+    - telnet
+    - yum-cron
+    - tar
+    - bzip2
+    - kernel-devel
+    - net-tools
+    - nmap
+    - ntfs-3g
+    - sudo
+    - tmux
+    - tmux-top
+    - mlocate
+    - bash-completion
+    - atop
+    - glances
+    - python-pip
+    - python-setuptools
+    - git
+    - filezilla
+    #- corkscrew
+
+- name: RedHat| Ajout de mon user au group wheel
+  user:
+    name: '{{user_jack}}'
+    shell: /bin/bash
+    groups: wheel
+    append: yes
+
+- name: RedHat| Creation du group wheel
+  group:
+    name: wheel
+    state: present
+
+- name:  RedHat| Activation du sudo pour %wheel
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+

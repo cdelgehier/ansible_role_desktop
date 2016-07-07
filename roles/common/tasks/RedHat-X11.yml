@@ -1,0 +1,128 @@
+---
+- name: X11| Installation du groupe X11
+  yum: name="@x11" state=present
+
+- name: X11| Installation de quelque polices
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - dejavu-sans-fonts
+    - dejavu-sans-mono-fonts
+    - dejavu-serif-fonts
+
+- name: X11| Recherche du runlevel
+  command: systemctl get-default
+  register: runlevel
+
+- name: X11| Mode graphique par defaut
+  command: systemctl set-default graphical.target
+  when: runlevel.stdout != "graphical.target"
+
+#- name: X11| Recherche du mode actif
+#  command: systemctl is-active graphical.target
+#  register: graphical
+
+#- name: X11| Passage en mode graphique
+#  command: systemctl isolate graphical.target
+#  when: graphical.stdout != "active"
+
+- name: X11| Téléchagement de ma conf Xresources
+  get_url: 
+    url: https://raw.githubusercontent.com/cdelgehier/configs/master/urxvt/.Xresources
+    dest: '{{ item }}'
+    mode: 0444
+  with_items:
+    - /etc/X11/Xresources
+    - /home/jack/.Xdefault
+    - /root/.Xdefault
+
+- name: X11| Copie des fonds d'ecran
+  copy: src='{{ item }}' dest=/usr/share/backgrounds/ backup=yes mode='0644'
+  with_fileglob:
+    - "*.jpg"
+  ignore_errors: yes
+  
+######### CINNAMON ############
+- name: X11| Installation Cinnamon
+  yum:
+    name: '{{ item }}'
+    enablerepo: epel
+    update_cache: yes
+    state: present
+  when: desktop == 'cinnamon'
+  with_items:
+    - cinnamon*
+    #- f22-backgrounds-gnome
+
+######### I3WM ################
+- name: X11| Installation de i3wm
+  yum:
+    name: '{{ item }}'
+    enablerepo: epel
+    update_cache: yes
+    state: present
+  with_items:
+    - i3
+    - i3status
+#    - feh
+#    - py3status
+  when: desktop == 'i3wm'
+
+- name: X11| Installation de feh
+  yum:
+    name: '{{ item }}'
+    enablerepo: epel
+    update_cache: yes
+    state: present
+  with_items:
+    - feh
+  ignore_errors: yes
+  when: desktop == 'i3wm'
+
+
+- name: X11| Creation du repertoire pour .i3wm
+  file: 
+    dest: '{{ item }}/.i3'
+    state: directory
+    mode: 0755
+  with_items:
+    - '/root'
+    - '/home/{{ user_jack }}'
+  when: desktop == 'i3wm'
+
+- name: X11| Téléchagement de ma conf i3wm
+  get_url:
+    url: https://raw.githubusercontent.com/cdelgehier/configs/master/i3wm/config
+    dest: '{{ item }}/.i3/config'
+    mode: 0644
+  with_items:
+    - '/root'
+    - '/home/{{ user_jack }}'
+  when: desktop == 'i3wm'
+
+- name: X11| Ajout du repo i3wm
+  yum_repository:
+    name:        i3wm
+    description: Copr repo for i3wm-el7 owned by admiralnemo
+    baseurl:     http://copr-be.cloud.fedoraproject.org/results/admiralnemo/i3wm-el7/epel-$releasever-$basearch/
+    enabled:     yes
+    gpgcheck:    yes
+    gpgkey:      '{{i3wm_key_url}}'
+  when: desktop == 'i3wm'
+
+######### LightDM #############
+- name: X11| Installation de LightDM
+  yum:
+    name: lightdm
+    enablerepo: epel
+    update_cache: yes
+    state: present
+
+- name: X11| Modification du wallpaper de LightDM
+  lineinfile:
+    dest: /etc/lightdm/lightdm-gtk-greeter.conf
+    state: present
+    regexp: '^background='
+    line: 'background=/usr/share/backgrounds/wallpaper_centos_by_williamjmorenor-d7niw22.jpg'  
+

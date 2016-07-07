@@ -1,0 +1,15 @@
+---
+yum_main_bugtracker_url_centos_6: http://bugs.centos.org/set_project.php?project_id=19&ref=http://bugs.centos.org/bug_report_page.php?category=yum
+yum_main_bugtracker_url_centos_7: http://bugs.centos.org/set_project.php?project_id=23&ref=http://bugs.centos.org/bug_report_page.php?category=yum
+yum_main_cachedir: /var/cache/yum/$basearch/$releasever
+yum_main_clean_requirements_on_remove: 1
+yum_main_debuglevel: 2
+yum_main_distroverpkg: "{{ ansible_distribution | lower }}-release"
+yum_main_exactarch: 1
+yum_main_gpgcheck: 1
+yum_main_installonly_limit: 5
+yum_main_keepcache: 0
+yum_main_logfile: /var/log/yum.log
+yum_main_obsoletes: 1
+yum_main_plugins: 1
+#yum_proxy: "{{proxy_env['http_proxy']}}"

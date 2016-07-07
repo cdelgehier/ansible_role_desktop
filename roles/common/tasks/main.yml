@@ -1,0 +1,35 @@
+---
+- include_vars: ntp.yml
+- include_vars: yum.yml
+- include_vars: locales.yml
+- include_vars: X11.yml
+
+- name  : Taches en fonction de l OS
+  include: '{{ ansible_os_family }}.yml'
+
+- name  : X11| Chargement des taches
+  include: '{{ ansible_os_family }}-X11.yml'
+  #when: ansible_os_family == RedHat
+
+- name  : LOCALES| Chargement des taches
+  include: '{{ ansible_os_family }}-locales.yml'
+
+- name  : NTP| Chargement des taches
+  include: 'ntp.yml'
+
+- name: Bandwidth| Install speedtest-cli
+  pip:
+    name: speedtest-cli
+    state: present
+  ignore_errors: yes
+
+- name: GIT| Téléchagement de ma conf git
+  get_url:
+    url: https://raw.githubusercontent.com/cdelgehier/configs/master/git/.gitconfig
+    dest: '{{ item.path }}/.gitconfig'
+    mode: 0644
+    owner: '{{ item.owner }}'
+    force: yes
+  with_items:
+    - { path: '/root', owner: 'root' }
+    - { path: '/home/{{ user_jack }}', owner: '{{ user_jack }}' }

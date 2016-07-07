@@ -1,0 +1,3 @@
+[pc]
+localhost ansible_connection=local user_jack="jack" desktop="cinnamon"
+

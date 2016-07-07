@@ -1,0 +1,13 @@
+---
+- name: X11| Installation des besoins pour la virtu
+  yum: 
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - xorg-x11-drv-vmware
+    - xorg-x11-drv-vmmouse
+  when: ansible_virtualization_role == 'guest'
+
+- name: VBox| Setup des Vbox Add
+  command: /etc/init.d/vboxadd setup
+  when: ansible_virtualization_role == 'guest'

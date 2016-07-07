@@ -1,0 +1,2 @@
+---
+i3wm_key_url: "http://copr-be.cloud.fedoraproject.org/results/admiralnemo/i3wm-el{{ansible_distribution_major_version|int}}/pubkey.gpg"

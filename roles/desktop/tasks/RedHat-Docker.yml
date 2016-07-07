@@ -1,0 +1,62 @@
+---
+- name: Docker| Ajout de la clef
+  rpm_key:
+    key: '{{ docker_key_url }}'
+    state: present
+
+- name: Docker| Ajout du repo
+  yum_repository:
+    name:        docker
+    description: Docker Repository
+    baseurl:     https://yum.dockerproject.org/repo/main/centos/$releasever/
+    enabled:     yes
+    gpgcheck:    yes
+    gpgkey:      '{{ docker_key_url }}'
+
+- name: Docker| Install Engine
+  yum: 
+    name: 'docker-engine-{{docker_engine_version|default('*')}}'
+    update_cache: yes
+    state: present
+
+- name: Docker| Install pip
+  yum: 
+    name:  python-pip
+    state: present
+- name: Docker| Install compose
+  pip: 
+    name: docker-compose
+    version: '{{ docker_compose_version }}'
+    state: present
+
+#- name: Docker| Creation du repertoire system.d
+#  file:
+#    path:  /etc/systemd/system/docker.service.d
+#    owner: root
+#    group: root
+#    mode:  0755
+#    state: directory
+
+#- name: Docker| 
+#  template:
+#    src:   docker.service.conf.j2
+#    dest:  /etc/systemd/system/docker.service.d/docker.conf
+#    owner: root
+#    group: root
+#    mode:  0644
+#  notify:
+#    - Reload systemd
+#    - Restart docker
+
+- name: Docker| Ajout de mon user au group docker
+  user:
+    name: '{{ user_jack }}'
+    groups: docker
+    append: yes
+
+- name: Docker| Téléchagement de mes fonctions docker
+  get_url:
+    url: https://raw.githubusercontent.com/cdelgehier/dockerfiles/master/.docker_functions
+    dest: '/home/{{ user_jack }}/.docker_functions'
+    mode: 0640
+

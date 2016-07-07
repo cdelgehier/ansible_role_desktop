@@ -1,0 +1,44 @@
+---
+- name: VBox| Installation des dépendances
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - binutils
+    - gcc
+    - make
+    - patch
+    - libgomp 
+    - glibc-headers 
+    - glibc-devel
+    - kernel-headers 
+    - kernel-devel
+    - dkms
+
+- name: VBox| Ajout de la clef
+  rpm_key:
+    key: '{{ virtualbox_key_url }}'
+    state: present
+
+- name: VBox| Ajout du repo
+  get_url:
+    url: 'http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo'
+    dest: /etc/yum.repos.d/virtualbox.repo
+    owner: root
+    group: root
+    mode: 644
+
+- name: VBox| Installation
+  package: >
+    name=VirtualBox-{{virtualbox_version}}
+    state=latest
+
+- name: VBox| Setup des drivers
+  command: /usr/lib/virtualbox/vboxdrv.sh setup
+
+- name: VBox| Ajout de mon user au group vboxusers
+  user:
+    name: '{{user_jack}}'
+    groups: vboxusers
+    append: yes
+

@@ -1,0 +1,107 @@
+---
+- name: X11| Ajout de la clef google
+  rpm_key: 
+    key: '{{ google_key_url }}'
+    state: present
+
+- name: X11| Ajout du repo google
+  yum_repository:
+    name:        google
+    description: Google repository
+    baseurl:     http://dl.google.com/linux/rpm/stable/$basearch
+    enabled:     yes
+    gpgcheck:    yes
+    gpgkey:      '{{ google_key_url }}'
+
+
+- name: X11| Ajout du repo chrome
+  yum_repository:
+    name:        google-chrome
+    description: Google Chrome repository
+    baseurl:     http://dl.google.com/linux/chrome/rpm/stable/$basearch
+    enabled:     yes
+    gpgcheck:    yes
+    gpgkey:      '{{ google_key_url }}'
+
+- name: X11| Ajout du repo GTalk
+  yum_repository:
+    name:        google-talk
+    description: Google Talk repository
+    baseurl:     http://dl.google.com/linux/talkplugin/rpm/stable/$basearch
+    enabled:     yes
+    gpgcheck:    yes
+    gpgkey:      '{{ google_key_url }}'
+
+
+- name: X11| Installation des soft bureautiques
+  yum:
+    name: '{{ item }}'
+    enablerepo: epel
+    update_cache: yes
+    state: present
+  with_items:
+    - thunderbird
+    - thunderbird-lightning
+    - thunderbird-lightning-gdata
+    - gparted
+    - lm_sensors
+    - hddtemp
+    - google-chrome-stable
+    - google-talkplugin
+    - libreoffice-calc
+    - libreoffice-draw
+    - libreoffice-impress
+    - libreoffice-writer
+    - hexchat
+    - pidgin
+    - brasero
+    - gnome-terminal
+    - gedit
+    - gimp
+    - inkscape
+    - phototonic
+    - grub-customizer
+#    - pithos
+#    - sublimetext3
+#    - pycharm
+
+- name: X11| Ajout de la clef nux-dextop
+  rpm_key: 
+    key: '{{ nux_dextop_key_url }}'
+    state: present
+
+- name: X11| Ajout du repo nux-dextop
+  yum_repository:
+    name:        nux-dextop
+    description: nux-dextop repository
+    baseurl:     http://li.nux.ro/download/nux/dextop/el7/$basearch
+    enabled:     no
+    gpgcheck:    yes
+    gpgkey:      '{{ nux_dextop_key_url }}'
+
+- name: X11| Installation des soft media
+  yum:
+    name: '{{ item }}'
+    enablerepo: nux-dextop
+    update_cache: yes
+    state: present
+  with_items:
+    - clementine
+    - numlockx
+    - parcellite
+    - shutter
+    - skype
+    - vlc
+    - yumex
+
+- name: X11| Creation du repertoire de Pycharm
+  file: 
+    path: '/opt/pycharm-{{ pycharm_version }}'
+    state: directory
+
+- name: X11| Installation de Pycharm
+  unarchive:
+    src: 'http://download.jetbrains.com/python/pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.tar.gz'
+    dest: /opt
+    #creates: '/opt/pycharm-{{ pycharm_version }}'
+    copy: false

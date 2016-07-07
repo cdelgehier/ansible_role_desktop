@@ -1,0 +1,25 @@
+# {{ ansible_managed }}
+
+[main]
+{% if yum_main_bugtracker_url is defined %}
+bugtracker_url={{ yum_main_bugtracker_url }}
+{% elif ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" %}
+bugtracker_url={{ yum_main_bugtracker_url | default(yum_main_bugtracker_url_centos_6) }}
+{% elif ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" %}
+bugtracker_url={{ yum_main_bugtracker_url | default(yum_main_bugtracker_url_centos_7) }}
+{% endif %}
+cachedir={{ yum_main_cachedir }}
+clean_requirements_on_remove={{ yum_main_clean_requirements_on_remove }}
+debuglevel={{ yum_main_debuglevel }}
+distroverpkg={{ yum_main_distroverpkg }}
+exactarch={{ yum_main_exactarch }}
+gpgcheck={{ yum_main_gpgcheck }}
+installonly_limit={{ yum_main_installonly_limit }}
+keepcache={{ yum_main_keepcache }}
+logfile={{ yum_main_logfile }}
+obsoletes={{ yum_main_obsoletes }}
+plugins={{ yum_main_plugins }}
+{% if yum_proxy is defined %}
+proxy={{ yum_proxy }}
+{% endif %}
+

@@ -1,0 +1,33 @@
+---
+- name: NTP| Specifie la bonne timezone
+  file:
+    src: '/usr/share/zoneinfo/{{ ntp_timezone }}'
+    dest: /etc/localtime
+    state: link
+    force: yes
+
+- name: NTP| Installation NTP
+  yum: 
+    name: '{{ ntp_package_name }}'
+    state: installed
+
+- name: NTP| Verification que le ntp tourne et est au boot
+  service:
+    name: '{{ ntp_daemon }}'
+    state: started
+    enabled: yes
+  when: ntp_enabled
+
+- name: NTP| Verification que le ntp ne tourne pas et n'est pas au boot
+  service:
+    name: '{{ ntp_daemon }}'
+    state: stopped
+    enabled: no
+  when: not ntp_enabled
+
+- name: NTP| Generation du fichier ntp.conf
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+  notify: restart ntp
+  when: ntp_manage_config

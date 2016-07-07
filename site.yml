@@ -1,0 +1,6 @@
+---
+- hosts: all
+  roles:
+    - role: common
+    - { role: vm2work, when: ansible_virtualization_role == 'guest' }
+    - { role: desktop, when: ansible_virtualization_role == 'host' }
