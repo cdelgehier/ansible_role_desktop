@@ -12,7 +12,6 @@ virtualbox_key_url: "https://www.virtualbox.org/download/oracle_vbox.asc"
 
 # Vagrant
 vagrant_tmp: "/tmp/"
-vagrant_file: "vagrant"
 vagrant_version: 1.8.4
 vagrant_arch_ext: "x86_64"
 download_vagrant: True

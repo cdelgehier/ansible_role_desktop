@@ -61,17 +61,18 @@
     - filezilla
     #- corkscrew
 
+- name: RedHat| Creation du group wheel
+  group:
+    name: wheel
+    state: present
+
+
 - name: RedHat| Ajout de mon user au group wheel
   user:
     name: '{{user_jack}}'
     shell: /bin/bash
     groups: wheel
     append: yes
-
-- name: RedHat| Creation du group wheel
-  group:
-    name: wheel
-    state: present
 
 - name:  RedHat| Activation du sudo pour %wheel
   lineinfile:

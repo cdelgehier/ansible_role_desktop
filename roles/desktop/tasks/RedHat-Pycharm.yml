@@ -15,8 +15,11 @@
 #    copy: no
 #  when: pycharm_exist.stat.exists == False
 
+- name : PyCharm| Decompression de  Pycharm
+  command: tar xzf /tmp/pycharm.tar.gz -C /opt
+
 - name: PyCharm| Renommage du repertoire Pycharm
-  command: 'mv pycharm-{{ pycharm_edition }}-{{ pycharm_version }} /opt/pycharm'
+  command: 'mv /opt/pycharm-{{ pycharm_edition }}-{{ pycharm_version }} /opt/pycharm'
   args:
     chdir: '/opt'
 
