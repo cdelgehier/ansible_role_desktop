@@ -14,7 +14,11 @@ pip install --upgrade setuptools
 #python setup.py install
 pip install ansible
 ```
-## installation 
+## installation sur mon poste de travail
 ```shell
 $ ansible-playbook site.yml -i local.inventory
+```
+## installation de ma VM de boulot
+```shell
+$ vagrant up
 ```
