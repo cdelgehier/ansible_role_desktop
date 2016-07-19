@@ -14,13 +14,11 @@ pip install --upgrade setuptools
 #python setup.py install
 pip install ansible
 ```
-## installation 
+## installation sur mon poste de travail
 ```shell
-$ ansible-playbook -i "localhost," -c local main.yml
-```
-ou si le host est bien rempli
-```shell
-$ cat /etc/ansible/hosts 
-localhost ansible_connection=local
 $ ansible-playbook site.yml -i local.inventory
+```
+## installation de ma VM de boulot
+```shell
+$ vagrant up
 ```
