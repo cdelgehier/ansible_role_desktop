@@ -61,9 +61,14 @@
     - inkscape
     - phototonic
     - grub-customizer
+    - alsa-plugins-pulseaudio
 #    - pithos
-#    - sublimetext3
-#    - pycharm
+
+- name: X11| Téléchargement de Atom
+  get_url: url={{ atom_url_rpm }} dest={{atom_tmp_rpm}}
+
+- name: X11| Installation d'Atom
+  yum: name={{atom_tmp_rpm}}
 
 - name: X11| Ajout de la clef nux-dextop
   rpm_key: 
