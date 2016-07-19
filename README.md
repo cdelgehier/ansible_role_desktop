@@ -16,11 +16,5 @@ pip install ansible
 ```
 ## installation 
 ```shell
-$ ansible-playbook -i "localhost," -c local main.yml
-```
-ou si le host est bien rempli
-```shell
-$ cat /etc/ansible/hosts 
-localhost ansible_connection=local
 $ ansible-playbook site.yml -i local.inventory
 ```
