@@ -24,3 +24,8 @@ vagrant_tmp_file: "{{vagrant_tmp}}/{{vagrant_file}}"
 docker_key_url: "https://yum.dockerproject.org/gpg"
 docker_engine_version: '*' # latest
 docker_compose_version: '1.5.2'
+
+#Atom
+atom_url_rpm: "https://atom.io/download/rpm"
+atom_tmp_rpm: "/tmp/atom.rpm"
+
