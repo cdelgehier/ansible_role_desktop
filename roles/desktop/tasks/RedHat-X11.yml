@@ -62,6 +62,8 @@
     - phototonic
     - grub-customizer
     - alsa-plugins-pulseaudio
+    - file-roller
+    - cups
 #    - pithos
 
 - name: X11| Téléchargement de Atom
@@ -98,4 +100,6 @@
     - skype
     - vlc
     - yumex
+    - pangox-compat
+    - libusb
 
