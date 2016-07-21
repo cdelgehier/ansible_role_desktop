@@ -12,3 +12,6 @@
     name: '{{ vagrant_tmp_file }}'
     state: present
   changed_when: false
+
+- name: Vagrant| Installation du plugin vbguest
+  command: 'vagrant plugin install vagrant-vbguest'
