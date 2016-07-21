@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     desktop_config.vm.hostname = "desktop"
     desktop_config.ssh.forward_agent = true
     #desktop_config.vm.network :private_network, ip: "10.0.15.11"
-    desktop_config.vm.network "public_network"
+    desktop_config.vm.network "public_network", bridge: "enp3s0"
     #desktop_config.vm.network "forwarded_port", guest: 80, host: 8080
     desktop_config.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
