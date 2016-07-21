@@ -60,6 +60,7 @@
     - git
     - filezilla
     - rxvt-unicode
+    - ntfsprogs.x86_64
     #- corkscrew
 
 - name: RedHat| Creation du group wheel
