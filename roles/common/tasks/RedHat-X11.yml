@@ -34,8 +34,8 @@
     mode: 0444
   with_items:
     - /etc/X11/Xresources
-    - /home/jack/.Xdefault
-    - /root/.Xdefault
+    - /home/jack/.Xresources
+    - /root/.Xresources
 
 - name: X11| Copie des fonds d'ecran
   copy: src='{{ item }}' dest=/usr/share/backgrounds/ backup=yes mode='0644'
