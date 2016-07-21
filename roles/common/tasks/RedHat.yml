@@ -59,6 +59,7 @@
     - python-setuptools
     - git
     - filezilla
+    - rxvt-unicode
     #- corkscrew
 
 - name: RedHat| Creation du group wheel
