@@ -8,6 +8,6 @@
     - xorg-x11-drv-vmmouse
   when: ansible_virtualization_role == 'guest'
 
-- name: VBox| Setup des Vbox Add
-  command: /etc/init.d/vboxadd setup
-  when: ansible_virtualization_role == 'guest'
+#- name: VBox| Setup des Vbox Add
+#  command: /etc/init.d/vboxadd setup
+#  when: ansible_virtualization_role == 'guest'
