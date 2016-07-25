@@ -64,6 +64,7 @@
     - alsa-plugins-pulseaudio
     - file-roller
     - cups
+    - wireless-tools
 #    - pithos
 
 - name: X11| Téléchargement de Atom
