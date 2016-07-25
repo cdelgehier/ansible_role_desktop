@@ -32,6 +32,14 @@
     gpgcheck:    yes
     gpgkey:      '{{ google_key_url }}'
 
+- name: X11| Ajout du repo hipchat
+  yum_repository:
+    name:        atlassian-hipchat
+    description: Atlassian Hipchat repository
+    baseurl:     http://hipchat.cloudsystem.fr/clients/linux/yum
+    enabled:     yes
+    gpgcheck:    yes
+    gpgkey:      https://www.hipchat.com/keys/hipchat-linux.key
 
 - name: X11| Installation des soft bureautiques
   yum:
@@ -65,6 +73,7 @@
     - file-roller
     - cups
     - wireless-tools
+    - hipchat
 #    - pithos
 
 - name: X11| Téléchargement de Atom
