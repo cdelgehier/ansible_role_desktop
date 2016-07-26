@@ -112,4 +112,5 @@
     - yumex
     - pangox-compat
     - libusb
-
+    - remmina
+    - remmina-plugins-rdp
