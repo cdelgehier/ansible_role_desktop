@@ -74,6 +74,7 @@
     - cups
     - wireless-tools
     - hipchat
+    - p7zip
 #    - pithos
 
 - name: X11| Téléchargement de Atom
