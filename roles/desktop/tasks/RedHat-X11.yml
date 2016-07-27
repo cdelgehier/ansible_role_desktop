@@ -75,6 +75,7 @@
     - wireless-tools
     - hipchat
     - p7zip
+    - gnome-calculator
 #    - pithos
 
 - name: X11| Téléchargement de Atom
