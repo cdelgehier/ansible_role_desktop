@@ -62,6 +62,7 @@
     - rxvt-unicode
     - ntfsprogs.x86_64
     - bind-utils
+    - evince
     #- corkscrew
 
 - name: RedHat| Creation du group wheel
