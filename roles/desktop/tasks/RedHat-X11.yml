@@ -76,6 +76,7 @@
     - hipchat
     - p7zip
     - gnome-calculator
+    - libpst
 #    - pithos
 
 - name: X11| Téléchargement de Atom
