@@ -78,6 +78,7 @@
     - gnome-calculator
     - libpst
     - NetworkManager-wifi
+    - NetworkManager-openvpn-gnome
 #    - pithos
 
 
