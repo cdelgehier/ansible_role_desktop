@@ -77,7 +77,9 @@
     - p7zip
     - gnome-calculator
     - libpst
+    - NetworkManager-wifi
 #    - pithos
+
 
 - name: X11| Téléchargement de Atom
   get_url: url={{ atom_url_rpm }} dest={{atom_tmp_rpm}}
