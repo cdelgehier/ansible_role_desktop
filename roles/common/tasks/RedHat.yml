@@ -63,7 +63,7 @@
     - ntfsprogs.x86_64
     - bind-utils
     - evince
-    - usbutils-007-5
+    - usbutils
     #- corkscrew
 
 - name: RedHat| Creation du group wheel
