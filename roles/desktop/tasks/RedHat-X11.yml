@@ -79,6 +79,8 @@
     - libpst
     - NetworkManager-wifi
     - NetworkManager-openvpn-gnome
+    - youtube-dl
+    - ffmpeg
 #    - pithos
 
 
