@@ -48,6 +48,7 @@
     - net-tools
     - nmap
     - ntfs-3g
+    - fuse-sshfs
     - sudo
     - tmux
     - tmux-top
