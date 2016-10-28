@@ -2,6 +2,7 @@
 
 google_key_url: https://dl-ssl.google.com/linux/linux_signing_key.pub
 pol_key_url: http://rpm.playonlinux.com/public.gpg
+terminix_key_url: http://download.opensuse.org/repositories/home:/gnunn/CentOS_7//repodata/repomd.xml.key
 nux_dextop_key_url: http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
 
 pycharm_edition: community
