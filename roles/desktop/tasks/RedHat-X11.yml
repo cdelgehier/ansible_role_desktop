@@ -93,6 +93,7 @@
     - ffmpeg
     - NetworkManager-strongswan
 #    - pithos
+    - terminix
 
 
 - name: X11| Téléchargement de Atom
