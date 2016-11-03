@@ -1,0 +1,44 @@
+---
+- name: X11| Ajout de la clef PlayOnLinux
+  rpm_key: 
+    key: '{{ pol_key_url }}'
+    state: present
+
+- name: X11| Ajout du repo PlayOnLinux
+  yum_repository:
+    name:        playonlinux
+    description: PlayOnLinux Official repository
+    baseurl:     http://rpm.playonlinux.com/fedora/yum/base
+    enabled:     no
+    gpgcheck:    yes
+    gpgkey:      '{{ pol_key_url }}'
+
+- name: X11| Installation des dependance de POL
+  yum:
+    name: '{{ item }}'
+    enablerepo: playonlinux,epel
+    update_cache: yes
+    state: present
+  with_items:
+    - wine
+    - wxPython
+    - cabextract
+    - SDL.i686
+    - p7zip-plugins
+    - p7zip
+    - ImageMagick
+    - libXaw
+    - xterm
+    - mesa-dri-drivers.i686
+    - mesa-libGL.i686
+    - libGLEW.i686
+    - mesa-libGLU.i686
+    - nc
+    - playonlinux
+
+- sysctl:
+    name: net.ipv4.tcp_timestamps
+    value: 0
+    state: present
+    sysctl_file: /etc/sysctl.d/10-leagueoflegend.conf
+
