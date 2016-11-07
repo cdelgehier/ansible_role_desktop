@@ -20,7 +20,7 @@
   include: '{{ ansible_os_family }}-POL.yml'
   tags: [ 'POL' ]
 
-- name  : Pycharm| Chargement des taches
-  include: '{{ ansible_os_family }}-Pycharm.yml'
-  tags: [ 'Pycharm' ]
+#- name  : Pycharm| Chargement des taches
+#  include: '{{ ansible_os_family }}-Pycharm.yml'
+#  tags: [ 'Pycharm' ]
 
