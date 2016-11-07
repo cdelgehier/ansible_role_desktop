@@ -137,3 +137,10 @@
     - remmina-plugins-rdp
     - fuse-exfat
     - exfat-utils
+
+- name: X11| Install d'un UI sympa pour GIMP
+  git:
+    repo: https://github.com/doctormo/GimpPs.git
+    dest: '/home/{{user_jack}}/.gimp-2.8'
+  become: true
+  become_user: '{{user_jack}}'
