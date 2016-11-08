@@ -95,6 +95,7 @@
     - xscreensaver-gl-extras
 #    - pithos
     - terminix
+    - conky-manager
 
 
 - name: X11| Téléchargement de Atom
