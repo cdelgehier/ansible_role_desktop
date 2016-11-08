@@ -143,5 +143,7 @@
   git:
     repo: https://github.com/doctormo/GimpPs.git
     dest: '/home/{{user_jack}}/.gimp-2.8'
+    force: no
   become: true
   become_user: '{{user_jack}}'
+  ignore_errors: yes
