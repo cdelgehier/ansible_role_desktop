@@ -96,6 +96,7 @@
 #    - pithos
     - terminix
     - conky-manager
+    - rfkill
 
 
 - name: X11| Téléchargement de Atom
