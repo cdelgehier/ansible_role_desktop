@@ -65,6 +65,8 @@
     - bind-utils
     - evince
     - usbutils
+    - firewalld
+    - libselinux-python
     #- corkscrew
 
 - name: RedHat| Creation du group wheel

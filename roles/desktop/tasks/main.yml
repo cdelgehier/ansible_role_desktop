@@ -8,9 +8,9 @@
   include: '{{ ansible_os_family }}-VBox.yml'
   tags: [ 'VBox' ]
 
-- name  : Vagrant| Chargement des taches
-  include: '{{ ansible_os_family }}-Vagrant.yml'
-  tags: [ 'Vagrant' ]
+#- name  : Vagrant| Chargement des taches
+#  include: '{{ ansible_os_family }}-Vagrant.yml'
+#  tags: [ 'Vagrant' ]
 
 - name  : Docker| Chargement des taches
   include: '{{ ansible_os_family }}-Docker.yml'

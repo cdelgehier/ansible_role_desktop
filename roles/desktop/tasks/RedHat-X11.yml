@@ -65,7 +65,7 @@
     - lm_sensors
     - hddtemp
     - google-chrome-stable
-    - google-talkplugin
+    #- google-talkplugin
     - libreoffice-calc
     - libreoffice-draw
     - libreoffice-impress
@@ -90,11 +90,11 @@
     - NetworkManager-wifi
     - NetworkManager-openvpn-gnome
     - youtube-dl
-    - ffmpeg
+#    - ffmpeg
     - NetworkManager-strongswan
     - xscreensaver-gl-extras
 #    - pithos
-    - terminix
+#    - terminix
     - conky-manager
     - rfkill
 
