@@ -22,3 +22,8 @@ $ ansible-playbook site.yml -i local.inventory
 ```shell
 $ vagrant up
 ```
+## windows part
+```shell
+$ @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+$ choco install -y atom jre8 7zip.install skype vlc ccleaner sysinternals filezilla procexp kitty keepass.install classic-shell mysql.workbench windirstat  cdburnerxp  procmon  evernote treesizefree cpu-z miktex hipchat screenpresso clementine
+```
