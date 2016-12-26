@@ -97,6 +97,7 @@
 #    - terminix
     - conky-manager
     - rfkill
+    - system-config-printer
 
 
 - name: X11| Téléchargement de Atom
