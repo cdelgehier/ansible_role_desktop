@@ -68,6 +68,8 @@
     - firewalld
     - libselinux-python
     #- corkscrew
+    - nfs-utils
+    - nfs-utils-lib
 
 - name: RedHat| Creation du group wheel
   group:
